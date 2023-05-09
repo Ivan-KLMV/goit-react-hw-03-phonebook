@@ -9,9 +9,7 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    console.log('componentDidMount');
     if (localStorage.getItem('contacts')) {
-      console.log(localStorage.getItem('contacts'));
       this.setState({ contacts: JSON.parse(localStorage.getItem('contacts')) });
     }
   }
