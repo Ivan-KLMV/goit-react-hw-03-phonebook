@@ -8,6 +8,20 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    console.log('componentDidMount');
+    if (localStorage.getItem('contacts')) {
+      console.log(localStorage.getItem('contacts'));
+      this.setState({ contacts: JSON.parse(localStorage.getItem('contacts')) });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   addContact = contact => {
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
